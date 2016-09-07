@@ -1,10 +1,12 @@
-const graphql = require('graphql');
+const { GraphQLObjectType } = require('graphql'),
+      createPlayMutation = require('./create-play.mutation');
 
 
 module.exports.rootMutation = (refs) => {
-  return new graphql.GraphQLObjectType({
-    name: 'RootMutation',
+  return new GraphQLObjectType({
+    name: 'rootMutation',
     fields: {
+      createPlay: createPlayMutation(refs)
     }
   });
 };

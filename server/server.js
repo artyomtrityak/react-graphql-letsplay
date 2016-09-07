@@ -3,7 +3,8 @@ const graphql = require('graphql'),
       express = require('express'),
       cors = require('cors'),
       session = require('express-session'),
-      graphqlSchema = require('./graphql-schema');
+      graphqlSchema = require('./graphql-schema'),
+      dataLayer = require('./data-layer');
 
 global.app = express();
 global.app.use(cors());
@@ -14,6 +15,8 @@ global.app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+dataLayer.connect();
 
 const formatError = (error) => ({
   message: error.message,

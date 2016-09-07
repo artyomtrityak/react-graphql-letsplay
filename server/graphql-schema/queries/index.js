@@ -1,35 +1,12 @@
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = require('graphql');
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLInt } = require('graphql');
 
 module.exports.rootQuery = (refs) => {
-  const testType = new GraphQLObjectType({
-    name: 'test',
-    description: 'test.',
-    fields: () => ({
-      id: {
-        type: new GraphQLNonNull(GraphQLString),
-        description: 'The id of test.'
-      },
-      server: {
-        type: GraphQLString,
-        description: 'The id of test.'
-      }
-    })
-  });
-
-
   return new GraphQLObjectType({
-    name: 'RootQuery',
+    name: 'rootQuery',
     fields: {
-      
-      viewer: {
-        type: testType,
-        resolve: () => {
-          //Root server information: version etc
-          return {
-            server: '1'
-          };
-        }
-      }
+      viewer: require('./viewer.query')(refs),
+      plays: require('./plays.query')(refs),
+      users: require('./users.query')(refs)
     }
   });
 };
