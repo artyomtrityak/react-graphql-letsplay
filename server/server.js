@@ -5,6 +5,7 @@ const graphql = require('graphql'),
       cors = require('cors'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
+      cookieParser = require('cookie-parser'),
       graphqlSchema = require('./graphql-schema'),
       dataLayer = require('./data-layer'),
 
@@ -13,6 +14,7 @@ const graphql = require('graphql'),
 
 global.app = express();
 global.app.use(cors());
+global.app.use(cookieParser());
 global.app.use(bodyParser.urlencoded({ extended: true }) );
 global.app.use(session({
   secret: 'keyboard cat', //TODO: get from process.env.SECRET
