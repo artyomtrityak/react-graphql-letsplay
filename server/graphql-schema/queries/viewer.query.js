@@ -1,15 +1,17 @@
-const { GraphQLList, GraphQLInt } = require('graphql');
+const { GraphQLList, GraphQLInt, GraphQLString, GraphQLNonNull } = require('graphql');
 
 
 module.exports = (refs) => {
   return {
     type: refs.userType,
-    resolve: () => {
-      //Logged in user
-      return {
-        id: 1,
-        name: 'test'
-      };
+    args: {
+      token: {
+        type: new GraphQLNonNull(GraphQLString)
+      }
+    },
+    resolve: (req, args, root) => {
+      //console.log('get viewer: ', args);
+      return global.app.get('model__users').getUserFromToken(args);
     }
   };
 };

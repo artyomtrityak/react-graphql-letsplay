@@ -1,4 +1,4 @@
-const { GraphQLList, GraphQLInt, GraphQLNonNull } = require('graphql');
+const { GraphQLList, GraphQLInt, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
 module.exports = (refs) => {
@@ -12,8 +12,7 @@ module.exports = (refs) => {
         type: new GraphQLNonNull(GraphQLInt)
       }
     },
-    resolve: (user, args, root) => {
-      console.log('get plays: ', user, args, root);
+    resolve: (req, args, root) => {
       global.app.get('model__plays').getPlays(args);
 
       return [{

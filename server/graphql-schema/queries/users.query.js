@@ -1,4 +1,4 @@
-const { GraphQLList, GraphQLInt } = require('graphql');
+const { GraphQLList, GraphQLInt, GraphQLNonNull } = require('graphql');
 
 
 module.exports = (refs) => {
@@ -6,15 +6,14 @@ module.exports = (refs) => {
     type: new GraphQLList(refs.playType),
     args: {
       first: {
-        type: GraphQLInt
+        type: new GraphQLNonNull(GraphQLInt)
       },
       skip: {
-        type: GraphQLInt
+        type: new GraphQLNonNull(GraphQLInt)
       }
     },
-    resolve: (user, args, root) => {
-      console.log('get users: ', user, args, root);
-      global.app.get('data-layer__users').getUsers(args);
+    resolve: (req, args, root) => {
+      global.app.get('model__users').getUsers(args);
 
       return [{
         id: 1,

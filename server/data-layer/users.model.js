@@ -27,3 +27,12 @@ module.exports.createUser = function createUser (options) {
       return getUser({id: params[0]});
     });
 };
+
+
+module.exports.getUserFromToken = function getUserFromToken (options) {
+  return {
+    id: 1,
+    name: 'Toekn user name'
+  };
+};
+
