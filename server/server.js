@@ -1,13 +1,19 @@
 const graphql = require('graphql'),
       graphqlHTTP = require('express-graphql'),
+      passport = require('passport'),
       express = require('express'),
       cors = require('cors'),
+      bodyParser = require('body-parser'),
       session = require('express-session'),
       graphqlSchema = require('./graphql-schema'),
-      dataLayer = require('./data-layer');
+      dataLayer = require('./data-layer'),
+
+      //Should be required to unsure strategies registration
+      AuthService = require('./auth');
 
 global.app = express();
 global.app.use(cors());
+global.app.use(bodyParser.urlencoded({ extended: true }) );
 global.app.use(session({
   secret: 'keyboard cat', //TODO: get from process.env.SECRET
   //store: TODO: use some store to store sessions. Redis?
@@ -23,6 +29,11 @@ const formatError = (error) => ({
   locations: error.locations,
   stack: error.stack
 });
+
+global.app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 global.app
   .use('/graphql', graphqlHTTP((request) => ({
