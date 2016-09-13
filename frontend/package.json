@@ -1,0 +1,21 @@
+{
+  "name": "letsplay-frontend",
+  "version": "0.1.0",
+  "main": "index.html",
+  "scripts": {
+    "start": "webpack-dev-server --colors --progress",
+    "test": "eslint ."
+  },
+  "devDependencies": {
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "eslint": "^3.5.0",
+    "eslint-loader": "^1.5.0",
+    "whatwg-fetch": "^1.0.0"
+  }
+}
