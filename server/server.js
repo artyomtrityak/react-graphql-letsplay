@@ -18,7 +18,7 @@ const graphql = require('graphql'),
 global.app = express();
 global.app.use(cors());
 global.app.use(cookieParser());
-global.app.use(bodyParser.urlencoded({ extended: true }) );
+global.app.use(bodyParser.urlencoded({extended: true}));
 global.app.use(bodyParser.json());
 global.app.use(session({
   secret: 'keyboard cat',
@@ -50,15 +50,14 @@ global.app.post(
 
 
 //Initialize GraphQL
-global.app
-  .use('/graphql', graphqlHTTP((request) => ({
-    schema: graphqlSchema,
-    pretty: true,
-    rootValue: {
-      session: request.session
-    },
-    formatError: devtools.formatError
-  })))
-  .listen(5000);
+global.app.use('/graphql', graphqlHTTP((request) => ({
+  schema: graphqlSchema,
+  pretty: process.env.NODE_ENV !== 'production',
+  rootValue: {
+    session: request.session
+  },
+  formatError: devtools.formatError
+})));
 
-console.log('GraphQL server running on http://localhost:5000/graphql');
+global.app.listen(5000);
+console.log('Server running on http://localhost:5000');
