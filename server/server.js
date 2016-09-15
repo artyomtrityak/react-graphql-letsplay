@@ -18,8 +18,8 @@ const graphql = require('graphql'),
 global.app = express();
 global.app.use(cors());
 global.app.use(cookieParser());
-global.app.use(bodyParser.urlencoded({extended: true}));
-global.app.use(bodyParser.json());
+//global.app.use(bodyParser.urlencoded({extended: true}));
+//global.app.use(bodyParser.json());
 global.app.use(session({
   secret: 'keyboard cat',
   cookie: {maxAge: 60000},
@@ -50,11 +50,12 @@ global.app.post(
 
 
 //Initialize GraphQL
-global.app.use('/graphql', graphqlHTTP((request) => ({
+global.app.use('/graphql', graphqlHTTP((req, resp) => ({
   schema: graphqlSchema,
   pretty: process.env.NODE_ENV !== 'production',
   rootValue: {
-    session: request.session
+    request: req,
+    response: resp
   },
   formatError: devtools.formatError
 })));

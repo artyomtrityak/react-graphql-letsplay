@@ -15,6 +15,10 @@ module.exports = (refs) => {
         type: GraphQLString
       },
 
+      email: {
+        type: GraphQLString
+      },
+
       friends: {
         type: new GraphQLList(refs.userType),
         resolve: (user, args, root) => {

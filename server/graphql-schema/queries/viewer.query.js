@@ -10,7 +10,7 @@ module.exports = (refs) => {
       }
     },
     resolve: (req, args, root) => {
-      //console.log('get viewer: ', args);
+      console.log('get viewer: ', req);
       return global.app.get('model__users').getUserFromToken(args);
     }
   };

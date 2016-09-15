@@ -1,4 +1,5 @@
-const { GraphQLString } = require('graphql');
+const { GraphQLString } = require('graphql'),
+      jwt = require('jsonwebtoken');
 
 
 module.exports = (refs) => ({
@@ -12,6 +13,13 @@ module.exports = (refs) => ({
     }
   },
   resolve: (parent, args, root) => {
-    return global.app.get('model__user').createUser(args);
+    return global.app.get('model__users').createUser(args)
+      .then((user) => {
+        //TODO: move to some shared to reuse from auth
+        const expiresIn = 60 * 60 * 24 * 180, // 180 days
+        token = jwt.sign(user, 'my secret', { expiresIn });
+        parent.response.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
+        return user;
+      });
   }
 });

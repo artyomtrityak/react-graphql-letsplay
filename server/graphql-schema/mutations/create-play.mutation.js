@@ -12,6 +12,6 @@ module.exports = (refs) => ({
     }
   },
   resolve: (parent, args, root) => {
-    return global.app.get('model__play').createPlay(args);
+    return global.app.get('model__plays').createPlay(args);
   }
 });

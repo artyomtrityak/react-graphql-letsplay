@@ -8,14 +8,15 @@ module.exports.getUsers = function getUsers (options) {
 };
 
 
-module.exports.getUser = function getUser (options) {
-  return global.app.get('db').select('id', 'email', 'verified', 'details', '__type')
+function getUser (options) {
+  return global.app.get('db').select('id', 'email', 'verified')
     .table('users')
     .where('id', options.id)
     .then((users) => {
       return users[0];
     });
-};
+}
+module.exports.getUser = getUser;
 
 
 module.exports.createUser = function createUser (options) {
