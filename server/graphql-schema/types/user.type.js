@@ -12,11 +12,11 @@ module.exports = (refs) => {
       },
 
       name: {
-        type: GraphQLString
+        type: new GraphQLNonNull(GraphQLString)
       },
 
       email: {
-        type: GraphQLString
+        type: new GraphQLNonNull(GraphQLString)
       },
 
       friends: {

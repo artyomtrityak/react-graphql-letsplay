@@ -10,7 +10,8 @@ const graphql = require('graphql'),
       jwt = require('jsonwebtoken'),
       graphqlSchema = require('./graphql-schema'),
       dataLayer = require('./data-layer'),
-      devtools = require('./utils/devtools'),
+      devtools = require('./shared/devtools'),
+      config = require('./shared/config'),
       AuthService = require('./auth');
 
 
@@ -18,16 +19,17 @@ const graphql = require('graphql'),
 global.app = express();
 global.app.use(cors());
 global.app.use(cookieParser());
-//global.app.use(bodyParser.urlencoded({extended: true}));
-//global.app.use(bodyParser.json());
+global.app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+global.app.use(/\/((?!graphql).)*/, bodyParser.json());
+
 global.app.use(session({
-  secret: 'keyboard cat',
+  secret: config.secret,
   cookie: {maxAge: 60000},
   resave: false,
   saveUninitialized: false
 }));
 global.app.use(expressJwt({
-  secret: 'my secret',
+  secret: config.secret,
   credentialsRequired: false,
   getToken: (req) => {
     console.log('GET TOCKEN1;', req.cookies.id_token);
@@ -52,7 +54,7 @@ global.app.post(
 //Initialize GraphQL
 global.app.use('/graphql', graphqlHTTP((req, resp) => ({
   schema: graphqlSchema,
-  pretty: process.env.NODE_ENV !== 'production',
+  pretty: config.isDevMode,
   rootValue: {
     request: req,
     response: resp

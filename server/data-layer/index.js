@@ -11,8 +11,8 @@ module.exports.connect = function connect() {
   });
 
   global.app.set('db', db);
-  global.app.set('model__users', require('./users.model'));
-  global.app.set('model__plays', require('./plays.model'));
+  global.app.set('model__user', require('./users.model'));
+  global.app.set('model__play', require('./plays.model'));
 
   return db;
 };
