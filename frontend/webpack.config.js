@@ -1,5 +1,6 @@
-var webpack = require('webpack'),
-  path = require('path');
+const webpack = require('webpack'),
+      path = require('path'),
+      StyleLintPlugin = require('stylelint-webpack-plugin');
 
 
 module.exports = {
@@ -21,12 +22,21 @@ module.exports = {
     ],
     loaders: [
       {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }
     ]
   },
+  plugins: [
+    new StyleLintPlugin({
+
+    }),
+  ],
   output: {
     path: path.join('./build'),
     filename: 'bundle.js',

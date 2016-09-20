@@ -1,0 +1,14 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+frontend/interfaces/
+
+[options]
+module.system=haste
+module.name_mapper.extension='scss' -> 'GlobalStub'
+
+[version]
+^0.32.0

@@ -1,5 +1,3 @@
 node_modules/**
-letsplayapp/node_modules/**
-letsplayapp/node_modules/android/**
-letsplayapp/node_modules/ios/**
+frontend/node_modules/**
 server/node_modules/**
