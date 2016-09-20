@@ -1,4 +1,4 @@
-module.exports.getPlays = function getPlays (options) {
+function getPlays (options) {
   options = Object.assign({}, options);
 
   return global.app.get('db').select(
@@ -7,10 +7,11 @@ module.exports.getPlays = function getPlays (options) {
     .table('plays')
     .offset(0)
     .limit(options.first);
-};
+}
+module.exports.getPlays = getPlays;
 
 
-module.exports.getPlay = function getPlay (options) {
+function getPlay (options) {
   return global.app.get('db').select(
     'id', 'name', 'description', 'author', 'bgg_game_id', 'players_limit', 'starts_at', 'address'
   )
@@ -19,10 +20,11 @@ module.exports.getPlay = function getPlay (options) {
     .then((users) => {
       return users[0];
     });
-};
+}
+module.exports.getPlay = getPlay;
 
 
-module.exports.createPlay = function createPlay (options) {
+function createPlay (options) {
   return global.app.get('db')
     .into('plays')
     .returning('id')
@@ -33,4 +35,5 @@ module.exports.createPlay = function createPlay (options) {
     .then((params) => {
       return getPlay({id: params[0]});
     });
-};
+}
+module.exports.createPlay = createPlay;

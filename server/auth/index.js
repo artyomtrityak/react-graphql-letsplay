@@ -1,7 +1,7 @@
 const passport = require('passport'),
   jwt = require('jsonwebtoken'),
   config = require('../shared/config');
-
+  
 require('./local.strategy');
 
 
@@ -11,4 +11,10 @@ module.exports.onSuccessfullAuth = (req, res) => {
   
   res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
   res.json(req.user);
+};
+
+
+module.exports.verifyPassword = (req, res) => {
+
+  res.json({ok: 1});
 };

@@ -7,7 +7,8 @@ module.exports.connect = function connect() {
     client: 'sqlite3',
     connection: {
       filename: './letsplay.sqlite'
-    }
+    },
+    useNullAsDefault: true
   });
 
   global.app.set('db', db);

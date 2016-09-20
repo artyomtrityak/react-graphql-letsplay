@@ -3,7 +3,13 @@ const passport = require('passport'),
   jwt = require('jsonwebtoken');
 
 
-passport.use(new LocalStrategy((username, password, done) => {
-  console.log('Loggin in with ', username, password);
-  done(null, {username: 'Artyom', id: 2});
+passport.use(new LocalStrategy((email, password, done) => {
+  global.app.get('model__user').loginUser({email, password})
+  .then((user) => {
+    if (user.error) {
+      done(user.error);
+    } else {
+      done(null, user);
+    }
+  });
 }));

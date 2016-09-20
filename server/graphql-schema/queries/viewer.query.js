@@ -9,9 +9,8 @@ module.exports = (refs) => {
         type: new GraphQLNonNull(GraphQLString)
       }
     },
-    resolve: (req, args, root) => {
-      console.log('get viewer: ', req);
-      return global.app.get('model__user').getUserFromToken(args);
+    resolve: (params, args, root) => {
+      return global.app.get('model__user').getUser({email: params.req.user.email});
     }
   };
 };
