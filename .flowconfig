@@ -5,6 +5,7 @@
 
 [libs]
 frontend/interfaces/
+flow-typed
 
 [options]
 module.system=haste

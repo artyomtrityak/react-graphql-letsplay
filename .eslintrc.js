@@ -6,6 +6,10 @@ module.exports = {
         "es6": true,
         "node": true
     },
+    "globals": {
+        "ReactElement": true,
+        "ReactComponent": true
+    },
     "extends": "eslint:recommended",
     "installedESLint": true,
     "parserOptions": {

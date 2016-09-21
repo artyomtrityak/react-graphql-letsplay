@@ -1,15 +1,22 @@
 /* @flow */
 import '../scss/index.scss';
 
-function add(num1, num2: number) {
-  return num1 + num2;
-}
-var x = add(3, '0');
-console.log(x);
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
 
+import rootReducer from './reducers';
+import Root from './components/root';
 
+const store = createStore(rootReducer);
 
-var y: boolean = 2;
-
-
-console.log('hello');
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Root />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById(('root'))
+);
