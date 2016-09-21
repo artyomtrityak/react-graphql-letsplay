@@ -9,7 +9,7 @@ console.log(x);
 
 
 
-var y: boolean = true;
+var y: boolean = 2;
 
 
 console.log('hello');
