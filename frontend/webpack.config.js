@@ -22,6 +22,10 @@ module.exports = {
     ],
     loaders: [
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite?' + JSON.stringify({name: '[name]_[hash]'})
+      },
+      {
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
       },
@@ -33,9 +37,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new StyleLintPlugin({
-
-    }),
+    new StyleLintPlugin({}),
   ],
   output: {
     path: path.join('./build'),
