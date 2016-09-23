@@ -2,17 +2,21 @@
 
 import React from 'react';
 import { Match } from 'react-router';
-import Login from '../login';
 import Header from './header';
+import Home from './home';
+import Auth from '../auth';
 
 
 export default class App extends React.Component {
   render(): ReactElement<any> {
     return (
-      <div>
+      <div className="letsplay">
         <Header isLoggedIn={false} />
 
-        <Match exactly pattern="/" component={Login} />
+        <div className="root-container">
+          <Match exactly pattern="/" component={Home} />
+          <Match pattern="/auth" component={Auth} />
+        </div>
       </div>
     );
   }

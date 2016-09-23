@@ -45,7 +45,8 @@ module.exports = {
     publicPath: 'http://localhost:8090/build/'
   },
   devServer: {
-    port: 8090
+    port: 8090,
+    historyApiFallback: true
   },
   devtool: 'source-map'
 };

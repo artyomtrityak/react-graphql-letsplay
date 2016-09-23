@@ -7,8 +7,6 @@ import cn from 'classnames';
 import PersonIcon from '../../../icons/person.svg';
 import Icon from '../shared/icon';
 
-console.log(PersonIcon);
-
 type PropsT = {
   isLoggedIn: boolean,
   //onSignIn:
@@ -36,7 +34,7 @@ export default (props: PropsT) => {
 
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
-            <a className="nav-link" href="#signup">
+            <a className="nav-link user-nav" href="/login">
               <Icon iconName={PersonIcon} width={20} height={20} />
               Sign in
             </a>

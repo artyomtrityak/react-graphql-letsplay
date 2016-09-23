@@ -1,0 +1,31 @@
+.auth-container {
+  @include make-container(0);
+
+  width: 30rem;
+
+  .auth-form {
+    @include make-row();
+    //@include make-col-ready();
+    //@include make-col(12);
+  }
+
+  .login-divider-header {
+    @include make-row();
+
+    padding-top: 1rem;
+  }
+
+  .login-social {
+    @include make-row();
+    @include make-container(0);
+
+    justify-content: space-around;
+  }
+
+  .divider {
+    @include nav-divider();
+
+    height: 2px;
+    margin-top: 0.7rem;
+  }
+}

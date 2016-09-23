@@ -1,0 +1,6 @@
+.user-nav {
+  @include make-row(-30px);
+
+  align-items: center;
+  fill: white;
+}
