@@ -8,7 +8,10 @@ module.exports = {
     },
     "globals": {
         "ReactElement": true,
-        "ReactComponent": true
+        "ReactComponent": true,
+        "rx$SubscribtionT": true,
+        "rx$ObservableT": true,
+        "gq$PayloadT": true
     },
     "extends": "eslint:recommended",
     "installedESLint": true,

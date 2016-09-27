@@ -2,7 +2,6 @@ const graphql = require('graphql'),
       graphqlHTTP = require('express-graphql'),
       passport = require('passport'),
       express = require('express'),
-      cors = require('cors'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
       cookieParser = require('cookie-parser'),
@@ -17,8 +16,16 @@ const graphql = require('graphql'),
 
 //Initializing Express app
 global.app = express();
-global.app.use(cors());
 global.app.use(cookieParser());
+
+if (config.isDevMode) {
+  global.app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8090");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+}
 
 //Parsing body except /graphql endpoint
 global.app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
