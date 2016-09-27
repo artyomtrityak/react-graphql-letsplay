@@ -1,3 +1,5 @@
+/* @flow */
+
 const defaultViewerState = {
   user: {},
   loading: true

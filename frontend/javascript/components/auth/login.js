@@ -58,7 +58,9 @@ export default class Login extends React.Component {
         </div>
 
         <div className="login-social">
-          <Icon iconName={facebookIcon} className="m-t-1" width={50} height={50} />
+          <Icon onClick={() => {
+            
+          }} iconName={facebookIcon} className="m-t-1" width={50} height={50} />
           <Icon iconName={googleIcon} className="m-t-1" width={50} height={50} />
           <Icon iconName={twitterIcon} className="m-t-1" width={50} height={50} />
         </div>

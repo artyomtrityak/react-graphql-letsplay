@@ -24,6 +24,9 @@ export default (props: PropsT) => {
           <li className={cn("nav-item", {"active": isActive('/$')})}>
             <Link className="nav-link" to="/">Home</Link>
           </li>
+          <li className={cn("nav-item", {"active": isActive('/playground')})}>
+            <Link className="nav-link" to="/playground">Playground</Link>
+          </li>
           <li className={cn("nav-item", {"active": isActive('/about')})}>
             <Link className="nav-link" to="/about">About</Link>
           </li>

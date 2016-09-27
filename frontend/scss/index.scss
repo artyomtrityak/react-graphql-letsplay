@@ -2,7 +2,7 @@
 
 .letsplay {
   @import "../javascript/components/auth/auth.scss";
-  @import "../javascript/components/root/navigation.scss";
+  @import "../javascript/components/root/root.scss";
 
   .root-container {
     @include make-container(30px);

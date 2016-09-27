@@ -1,4 +1,4 @@
-//@flow
+/* @flow */
 
 import React from 'react';
 
@@ -7,14 +7,16 @@ type PropsT = {
   width: number;
   height: number;
   className?: string;
-  onClick?: Function;
+  onClick?: (x: Event) => void;
 };
 
 export default (props: PropsT) => {
   const styles = {width: props.width, height: props.height};
 
   return (
-    <svg style={styles} className={props.className} onClick={props.onClick}>
+    <svg style={styles} className={props.className} onClick={(event) => {
+      props.onClick && props.onClick(event);
+    }}>
       <use xlinkHref={props.iconName} />
     </svg>
   );
