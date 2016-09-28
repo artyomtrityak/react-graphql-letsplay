@@ -6,7 +6,13 @@ const defaultViewerState = {
 };
 
 
-export default function userReducer(state=defaultViewerState, action) {
+export type StateT = {
+
+};
+type ActionT = {
+  type: string;
+};
+export default function userReducer(state: StateT=defaultViewerState, action: ActionT) {
   switch (action.type) {
 
     default:

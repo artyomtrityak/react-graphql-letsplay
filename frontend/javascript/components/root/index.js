@@ -6,33 +6,40 @@ import Header from './header';
 import Wellcome from './wellcome';
 import Auth from '../auth';
 import Rx from 'rxjs/Rx';
+import { connect } from 'react-redux';
 import graphql from '../../utils/graphql';
+//Types
+import type { ViewerT, StateT } from '../../reducers';
 
-
-export default class App extends React.Component {
+class App extends React.Component {
   load$: rx$SubscribtionT;
+  state: {viewer?: ViewerT}
 
-  componentWillMount(): void {
-    const requestObservable = graphql({
-      query: '{viewer(token:"abc"){id}}',
-      variables: {
-      }
-    });
-
-    this.load$ = requestObservable.subscribe((data) => {
-      console.log('data:', data);
-    });
-    
+  constructor(props): void {
+    super(props);
+    this.state = {};
   }
 
-  componentWillUnmount() {
+  componentWillMount(): void {
+    graphql({query: `{
+        viewer {
+          id,
+          email
+        }
+      }`
+    }).subscribe((data) => {
+      this.setState({viewer: data});
+    });    
+  }
+
+  componentWillUnmount(): void {
     this.load$.unsubscribe();
   }
 
   render(): ReactElement<any> {
     return (
       <div className="letsplay">
-        <Header isLoggedIn={false} />
+        <Header isLoggedIn={!!this.state.viewer} />
 
         <div className="root-container">
           <Match exactly pattern="/" component={Wellcome} />
@@ -41,4 +48,26 @@ export default class App extends React.Component {
       </div>
     );
   }
-} 
+}
+
+
+function mapStateToProps(state: StateT) {
+  return {
+    viewer: state.viewer
+  }; 
+}
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchLogin: (data: {username: string; password: string;}): void => (
+      dispatch({action: 'LOGIN_REQUEST', data})
+    ),
+    dispatchLogout: (): void => (
+      dispatch({action: 'LOGOUT_REQUEST'})
+    )
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

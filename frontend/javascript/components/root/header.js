@@ -7,19 +7,18 @@ import cn from 'classnames';
 import PersonIcon from '../../../icons/person.svg';
 import Icon from '../shared/icon';
 
-type PropsT = {
-  isLoggedIn: boolean,
-  //onSignIn:
-};
 
 const isActive = (path: string) => (
   !!location.pathname.match(new RegExp(`^${path}`, 'i'))
 );
 
+type PropsT = {
+  isLoggedIn: boolean
+};
 export default (props: PropsT) => {
   return (
      <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
-        <a className="navbar-brand" href="#">Project name</a>
+        <Link className="navbar-brand" to="/">Lets Play</Link>
         <ul className="nav navbar-nav">
           <li className={cn("nav-item", {"active": isActive('/$')})}>
             <Link className="nav-link" to="/">Home</Link>
@@ -37,10 +36,21 @@ export default (props: PropsT) => {
 
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
-            <a className="nav-link user-nav" href="/login">
-              <Icon iconName={PersonIcon} width={20} height={20} />
-              Sign in
-            </a>
+            {
+              props.isLoggedIn ? (
+                <Link className="nav-link user-nav" to="/logout">
+                  <Icon iconName={PersonIcon} width={20} height={20} />
+                  Sign out
+                </Link>
+              )
+              :
+              (
+                <Link className="nav-link user-nav" to="/login">
+                  <Icon iconName={PersonIcon} width={20} height={20} />
+                  Sign in
+                </Link>
+              )
+            }
           </li>
         </ul>
 
