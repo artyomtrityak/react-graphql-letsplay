@@ -39,6 +39,7 @@ class App extends React.Component {
 
   render(): ReactElement<any> {
     return (
+      <Router>
         <div className="letsplay">
           <Header isLoggedIn={!!this.state.viewer} />
 
@@ -47,6 +48,7 @@ class App extends React.Component {
             <Match pattern="/auth" component={Auth} />
           </div>
         </div>
+      </Router>
     );
   }
 }
