@@ -2,15 +2,15 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import Icon from '../shared/icon';
-import facebookIcon from '../../../icons/facebook.svg';
-import googleIcon from '../../../icons/google-plus.svg';
-import twitterIcon from '../../../icons/twitter.svg';
+import Icon from '../../shared/icon';
+import facebookIcon from '../../../../icons/facebook.svg';
+import googleIcon from '../../../../icons/google-plus.svg';
+import twitterIcon from '../../../../icons/twitter.svg';
+
 
 type PropsT = {
   rootPath: string;
 };
-
 export default class Login extends React.Component {
   props: PropsT;
 

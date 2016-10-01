@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Match } from 'react-router';
+import { Match, HashRouter as Router } from 'react-router';
 import Header from './header';
 import Wellcome from './wellcome';
 import Auth from '../auth';
@@ -28,6 +28,7 @@ class App extends React.Component {
         }
       }`
     }).subscribe((data) => {
+      //TODO: dispatch
       this.setState({viewer: data});
     });    
   }
@@ -38,14 +39,14 @@ class App extends React.Component {
 
   render(): ReactElement<any> {
     return (
-      <div className="letsplay">
-        <Header isLoggedIn={!!this.state.viewer} />
+        <div className="letsplay">
+          <Header isLoggedIn={!!this.state.viewer} />
 
-        <div className="root-container">
-          <Match exactly pattern="/" component={Wellcome} />
-          <Match pattern="/auth" component={Auth} />
+          <div className="root-container">
+            <Match exactly pattern="/" component={Wellcome} />
+            <Match pattern="/auth" component={Auth} />
+          </div>
         </div>
-      </div>
     );
   }
 }

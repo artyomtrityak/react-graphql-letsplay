@@ -8,9 +8,9 @@ import PersonIcon from '../../../icons/person.svg';
 import Icon from '../shared/icon';
 
 
-const isActive = (path: string) => (
-  !!location.pathname.match(new RegExp(`^${path}`, 'i'))
-);
+const isActive = (path: string): boolean => {
+  return !!location.pathname.match(new RegExp(`^${path}`, 'i'));
+};
 
 type PropsT = {
   isLoggedIn: boolean
@@ -26,11 +26,11 @@ export default (props: PropsT) => {
           <li className={cn("nav-item", {"active": isActive('/playground')})}>
             <Link className="nav-link" to="/playground">Playground</Link>
           </li>
-          <li className={cn("nav-item", {"active": isActive('/about')})}>
-            <Link className="nav-link" to="/about">About</Link>
+          <li className={cn("nav-item", {"active": isActive('/organized-play')})}>
+            <Link className="nav-link" to="/organized-play">Organized play</Link>
           </li>
           <li className={cn("nav-item", {"active": isActive('/contact')})}>
-            <Link className="nav-link" to="/contact">Contact</Link>
+            <Link className="nav-link" to="/contacts">Contacts</Link>
           </li>
         </ul>
 

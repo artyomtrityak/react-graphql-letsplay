@@ -1,7 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap-flex.scss";
 
 .letsplay {
-  @import "../javascript/components/auth/auth.scss";
+  @import "../javascript/components/auth/scss/auth.scss";
   @import "../javascript/components/root/root.scss";
 
   .root-container {
