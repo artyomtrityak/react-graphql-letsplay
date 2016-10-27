@@ -13,7 +13,7 @@ module.exports = (refs) => {
       }
     },
     resolve: (req, args, root) => {
-      global.app.get('model__user').getUsers(args);
+      //global.app.get('model__user').getUsers(args);
 
       return [{
         id: 1,
